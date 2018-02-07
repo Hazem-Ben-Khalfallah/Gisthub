@@ -1,4 +1,6 @@
 # Gisthub
+<img src="./screenshots/gisthub-logo.png" width="50" height="50">
+
 This application was generated using JHipster 4.14.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.0](http://www.jhipster.tech/documentation-archive/v4.14.0).
 
 ## Development
