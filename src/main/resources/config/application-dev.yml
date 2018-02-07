@@ -62,6 +62,7 @@ spring:
 #        key-alias: Gisthub
 # ===================================================================
 server:
+    host: http://127.0.0.1
     port: 28080
 
 # ===================================================================
@@ -122,3 +123,10 @@ jhipster:
 # ===================================================================
 
 application:
+    github:
+        callback-url: ${server.host}:${server.port}/api/github/callback
+        redirect-url: ${server.host}:${server.port}/api/github/callback/success
+        scope: read:user,gist
+        client:
+            id: d54f6e6a8d30c8a4a34e
+            secret: 16b29026f29e1f164eeb336ee510ad54fdb5710d
