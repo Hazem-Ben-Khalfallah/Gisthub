@@ -7,7 +7,7 @@ import com.blacknebula.gisthub.config.Constants;
 import com.blacknebula.gisthub.repository.UserRepository;
 import com.blacknebula.gisthub.security.AuthoritiesConstants;
 import com.blacknebula.gisthub.security.SecurityUtils;
-import com.blacknebula.gisthub.service.util.RandomUtil;
+import com.blacknebula.gisthub.util.RandomUtil;
 import com.blacknebula.gisthub.service.dto.UserDTO;
 
 import org.slf4j.Logger;

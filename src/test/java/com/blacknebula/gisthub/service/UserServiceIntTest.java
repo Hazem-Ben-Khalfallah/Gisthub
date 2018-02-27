@@ -5,7 +5,7 @@ import com.blacknebula.gisthub.config.Constants;
 import com.blacknebula.gisthub.domain.User;
 import com.blacknebula.gisthub.repository.UserRepository;
 import com.blacknebula.gisthub.service.dto.UserDTO;
-import com.blacknebula.gisthub.service.util.RandomUtil;
+import com.blacknebula.gisthub.util.RandomUtil;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;

@@ -1,6 +1,6 @@
-package com.blacknebula.gisthub.web.rest;
+package com.blacknebula.gisthub.github;
 
-import com.blacknebula.gisthub.service.GithubService;
+import com.blacknebula.gisthub.github.GithubService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

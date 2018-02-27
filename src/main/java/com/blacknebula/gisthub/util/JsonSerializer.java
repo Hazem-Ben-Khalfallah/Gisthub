@@ -1,4 +1,4 @@
-package com.blacknebula.gisthub.service.util;
+package com.blacknebula.gisthub.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;

@@ -1,4 +1,4 @@
-package com.blacknebula.gisthub.service.util;
+package com.blacknebula.gisthub.util;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
