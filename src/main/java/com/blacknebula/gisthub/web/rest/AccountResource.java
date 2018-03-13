@@ -2,11 +2,11 @@ package com.blacknebula.gisthub.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
-import com.blacknebula.gisthub.domain.User;
-import com.blacknebula.gisthub.repository.UserRepository;
+import com.blacknebula.gisthub.user.User;
+import com.blacknebula.gisthub.user.UserRepository;
 import com.blacknebula.gisthub.security.SecurityUtils;
 import com.blacknebula.gisthub.service.MailService;
-import com.blacknebula.gisthub.service.UserService;
+import com.blacknebula.gisthub.user.UserService;
 import com.blacknebula.gisthub.service.dto.UserDTO;
 import com.blacknebula.gisthub.web.rest.errors.*;
 import com.blacknebula.gisthub.web.rest.vm.KeyAndPasswordVM;

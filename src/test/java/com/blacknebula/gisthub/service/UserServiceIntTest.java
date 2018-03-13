@@ -2,9 +2,10 @@ package com.blacknebula.gisthub.service;
 
 import com.blacknebula.gisthub.GisthubApp;
 import com.blacknebula.gisthub.config.Constants;
-import com.blacknebula.gisthub.domain.User;
-import com.blacknebula.gisthub.repository.UserRepository;
+import com.blacknebula.gisthub.user.User;
+import com.blacknebula.gisthub.user.UserRepository;
 import com.blacknebula.gisthub.service.dto.UserDTO;
+import com.blacknebula.gisthub.user.UserService;
 import com.blacknebula.gisthub.util.RandomUtil;
 
 import org.apache.commons.lang3.RandomStringUtils;

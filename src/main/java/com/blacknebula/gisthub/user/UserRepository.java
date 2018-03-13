@@ -1,6 +1,6 @@
-package com.blacknebula.gisthub.repository;
+package com.blacknebula.gisthub.user;
 
-import com.blacknebula.gisthub.domain.User;
+import com.blacknebula.gisthub.user.User;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,12 +1,9 @@
-package com.blacknebula.gisthub.web.rest;
+package com.blacknebula.gisthub.user;
 
 import com.blacknebula.gisthub.config.Constants;
 import com.codahale.metrics.annotation.Timed;
-import com.blacknebula.gisthub.domain.User;
-import com.blacknebula.gisthub.repository.UserRepository;
 import com.blacknebula.gisthub.security.AuthoritiesConstants;
 import com.blacknebula.gisthub.service.MailService;
-import com.blacknebula.gisthub.service.UserService;
 import com.blacknebula.gisthub.service.dto.UserDTO;
 import com.blacknebula.gisthub.web.rest.errors.BadRequestAlertException;
 import com.blacknebula.gisthub.web.rest.errors.EmailAlreadyUsedException;

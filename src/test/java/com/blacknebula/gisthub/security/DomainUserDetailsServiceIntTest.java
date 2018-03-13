@@ -1,8 +1,8 @@
 package com.blacknebula.gisthub.security;
 
 import com.blacknebula.gisthub.GisthubApp;
-import com.blacknebula.gisthub.domain.User;
-import com.blacknebula.gisthub.repository.UserRepository;
+import com.blacknebula.gisthub.user.User;
+import com.blacknebula.gisthub.user.UserRepository;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;

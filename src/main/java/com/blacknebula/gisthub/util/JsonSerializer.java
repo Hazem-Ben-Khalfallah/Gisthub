@@ -1,14 +1,10 @@
 package com.blacknebula.gisthub.util;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.google.common.base.Optional;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class JsonSerializer {
@@ -20,8 +16,8 @@ public class JsonSerializer {
             return objectMapper.writeValueAsString(object);
         } catch (Exception ex) {
             LOGGER.error("Error when converting name=" + object.getClass().getName(), ex);
+            throw new JsonParserException("Error when converting name=" + object.getClass().getName(), ex);
         }
-        return "";
     }
 
     public static <T> T toObject(String jsonText, Class<T> clazz) {
@@ -29,34 +25,7 @@ public class JsonSerializer {
             return objectMapper.readValue(jsonText, clazz);
         } catch (IOException ex) {
             LOGGER.error("Exception on converting to class=" + clazz.getName(), ex);
-            return null;
-        }
-    }
-
-    public static <T> T toObject(byte[] jsonByte, Class<T> clazz) {
-        try {
-            return objectMapper.readValue(jsonByte, clazz);
-        } catch (IOException ex) {
-            LOGGER.error("Deserialization problem", ex);
-            return null;
-        }
-    }
-
-    public static <T> T toObject(byte[] jsonByte, TypeReference typeReference) {
-        try {
-            return objectMapper.readValue(jsonByte, typeReference);
-        } catch (IOException ex) {
-            LOGGER.error("Deserialization problem", ex);
-            return null;
-        }
-    }
-
-    public static <T> T toObject(String jsonString, TypeReference typeReference) {
-        try {
-            return objectMapper.readValue(jsonString, typeReference);
-        } catch (IOException ex) {
-            LOGGER.error("Deserialization problem", ex);
-            return null;
+            throw new JsonParserException("Exception on converting to class=" + clazz.getName(), ex);
         }
     }
 
@@ -66,16 +35,8 @@ public class JsonSerializer {
             return objectMapper.readValue(jsonText, TypeFactory.defaultInstance().constructCollectionType(List.class, clazz));
         } catch (IOException ex) {
             LOGGER.error("Exception on converting to class=" + clazz.getName(), ex);
-            return new ArrayList<>();
+            throw new JsonParserException("Exception on converting to class=" + clazz.getName(), ex);
         }
     }
 
-    public static Optional<JsonNode> parse(String jsonText) {
-        try {
-            return Optional.of(objectMapper.readTree(jsonText));
-        } catch (IOException ex) {
-            LOGGER.error("Exception on converting value=" + jsonText, ex);
-            return Optional.absent();
-        }
-    }
 }

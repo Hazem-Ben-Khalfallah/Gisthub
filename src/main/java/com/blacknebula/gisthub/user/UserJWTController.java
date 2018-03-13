@@ -1,4 +1,4 @@
-package com.blacknebula.gisthub.web.rest;
+package com.blacknebula.gisthub.user;
 
 import com.blacknebula.gisthub.security.jwt.JWTConfigurer;
 import com.blacknebula.gisthub.security.jwt.TokenProvider;

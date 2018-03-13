@@ -1,8 +1,9 @@
 package com.blacknebula.gisthub.web.rest;
 
 import com.blacknebula.gisthub.GisthubApp;
-import com.blacknebula.gisthub.domain.User;
-import com.blacknebula.gisthub.repository.UserRepository;
+import com.blacknebula.gisthub.user.User;
+import com.blacknebula.gisthub.user.UserJWTController;
+import com.blacknebula.gisthub.user.UserRepository;
 import com.blacknebula.gisthub.security.jwt.TokenProvider;
 import com.blacknebula.gisthub.web.rest.vm.LoginVM;
 import com.blacknebula.gisthub.web.rest.errors.ExceptionTranslator;

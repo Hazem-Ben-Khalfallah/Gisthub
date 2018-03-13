@@ -2,7 +2,7 @@ package com.blacknebula.gisthub.service;
 import com.blacknebula.gisthub.config.Constants;
 
 import com.blacknebula.gisthub.GisthubApp;
-import com.blacknebula.gisthub.domain.User;
+import com.blacknebula.gisthub.user.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
 import org.junit.Test;

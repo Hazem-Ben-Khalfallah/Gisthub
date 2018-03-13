@@ -3,16 +3,16 @@ package com.blacknebula.gisthub.web.rest;
 import com.blacknebula.gisthub.config.Constants;
 import com.blacknebula.gisthub.GisthubApp;
 import com.blacknebula.gisthub.domain.Authority;
-import com.blacknebula.gisthub.domain.User;
+import com.blacknebula.gisthub.user.User;
 import com.blacknebula.gisthub.repository.AuthorityRepository;
-import com.blacknebula.gisthub.repository.UserRepository;
+import com.blacknebula.gisthub.user.UserRepository;
 import com.blacknebula.gisthub.security.AuthoritiesConstants;
 import com.blacknebula.gisthub.service.MailService;
 import com.blacknebula.gisthub.service.dto.UserDTO;
 import com.blacknebula.gisthub.web.rest.errors.ExceptionTranslator;
 import com.blacknebula.gisthub.web.rest.vm.KeyAndPasswordVM;
 import com.blacknebula.gisthub.web.rest.vm.ManagedUserVM;
-import com.blacknebula.gisthub.service.UserService;
+import com.blacknebula.gisthub.user.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import org.junit.Before;
@@ -30,7 +30,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.time.Instant;
-import java.time.LocalDate;
 
 import java.util.*;
 

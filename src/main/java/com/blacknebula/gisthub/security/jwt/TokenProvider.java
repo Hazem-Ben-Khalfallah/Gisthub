@@ -1,5 +1,6 @@
 package com.blacknebula.gisthub.security.jwt;
 
+import com.blacknebula.gisthub.security.OauthAuthenticationToken;
 import io.github.jhipster.config.JHipsterProperties;
 
 import java.util.*;

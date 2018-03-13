@@ -1,7 +1,7 @@
 package com.blacknebula.gisthub.service.mapper;
 
 import com.blacknebula.gisthub.domain.Authority;
-import com.blacknebula.gisthub.domain.User;
+import com.blacknebula.gisthub.user.User;
 import com.blacknebula.gisthub.service.dto.UserDTO;
 
 import org.springframework.stereotype.Service;

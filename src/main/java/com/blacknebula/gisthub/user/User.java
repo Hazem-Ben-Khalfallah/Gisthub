@@ -1,7 +1,9 @@
-package com.blacknebula.gisthub.domain;
+package com.blacknebula.gisthub.user;
 
 import com.blacknebula.gisthub.config.Constants;
 
+import com.blacknebula.gisthub.domain.AbstractAuditingEntity;
+import com.blacknebula.gisthub.domain.Authority;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.Email;
@@ -78,6 +80,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Field("reset_date")
     private Instant resetDate = null;
+
+    @Field("token")
+    private String token;
 
     @JsonIgnore
     private Set<Authority> authorities = new HashSet<>();
@@ -185,6 +190,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

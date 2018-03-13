@@ -1,14 +1,13 @@
 package com.blacknebula.gisthub.service.dto;
 
 import com.blacknebula.gisthub.config.Constants;
-
 import com.blacknebula.gisthub.domain.Authority;
-import com.blacknebula.gisthub.domain.User;
-
+import com.blacknebula.gisthub.user.User;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,6 +52,8 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private String token;
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -73,6 +74,27 @@ public class UserDTO {
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
+    }
+
+    private UserDTO(Builder builder) {
+        setId(builder.id);
+        setLogin(builder.login);
+        setFirstName(builder.firstName);
+        setLastName(builder.lastName);
+        setEmail(builder.email);
+        setImageUrl(builder.imageUrl);
+        setActivated(builder.activated);
+        setLangKey(builder.langKey);
+        setCreatedBy(builder.createdBy);
+        setCreatedDate(builder.createdDate);
+        setLastModifiedBy(builder.lastModifiedBy);
+        setLastModifiedDate(builder.lastModifiedDate);
+        setAuthorities(builder.authorities);
+        setToken(builder.token);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -179,6 +201,14 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -195,5 +225,100 @@ public class UserDTO {
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
             "}";
+    }
+
+
+    public static final class Builder {
+        private String id;
+        private String login;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private String imageUrl;
+        private boolean activated;
+        private String langKey;
+        private String createdBy;
+        private Instant createdDate;
+        private String lastModifiedBy;
+        private Instant lastModifiedDate;
+        private Set<String> authorities;
+        private String token;
+
+        private Builder() {
+        }
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder login(String login) {
+            this.login = login;
+            return this;
+        }
+
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder imageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+            return this;
+        }
+
+        public Builder activated(boolean activated) {
+            this.activated = activated;
+            return this;
+        }
+
+        public Builder langKey(String langKey) {
+            this.langKey = langKey;
+            return this;
+        }
+
+        public Builder createdBy(String createdBy) {
+            this.createdBy = createdBy;
+            return this;
+        }
+
+        public Builder createdDate(Instant createdDate) {
+            this.createdDate = createdDate;
+            return this;
+        }
+
+        public Builder lastModifiedBy(String lastModifiedBy) {
+            this.lastModifiedBy = lastModifiedBy;
+            return this;
+        }
+
+        public Builder lastModifiedDate(Instant lastModifiedDate) {
+            this.lastModifiedDate = lastModifiedDate;
+            return this;
+        }
+
+        public Builder authorities(Set<String> authorities) {
+            this.authorities = authorities;
+            return this;
+        }
+
+        public Builder token(String token) {
+            this.token = token;
+            return this;
+        }
+
+        public UserDTO build() {
+            return new UserDTO(this);
+        }
     }
 }

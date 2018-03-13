@@ -1,6 +1,6 @@
 package com.blacknebula.gisthub.service;
 
-import com.blacknebula.gisthub.domain.User;
+import com.blacknebula.gisthub.user.User;
 
 import io.github.jhipster.config.JHipsterProperties;
 

@@ -1,7 +1,7 @@
 package com.blacknebula.gisthub.security;
 
-import com.blacknebula.gisthub.domain.User;
-import com.blacknebula.gisthub.repository.UserRepository;
+import com.blacknebula.gisthub.user.User;
+import com.blacknebula.gisthub.user.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;

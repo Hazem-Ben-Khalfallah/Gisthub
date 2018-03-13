@@ -2,11 +2,12 @@ package com.blacknebula.gisthub.web.rest;
 
 import com.blacknebula.gisthub.GisthubApp;
 import com.blacknebula.gisthub.domain.Authority;
-import com.blacknebula.gisthub.domain.User;
-import com.blacknebula.gisthub.repository.UserRepository;
+import com.blacknebula.gisthub.user.User;
+import com.blacknebula.gisthub.user.UserRepository;
 import com.blacknebula.gisthub.security.AuthoritiesConstants;
 import com.blacknebula.gisthub.service.MailService;
-import com.blacknebula.gisthub.service.UserService;
+import com.blacknebula.gisthub.user.UserResource;
+import com.blacknebula.gisthub.user.UserService;
 import com.blacknebula.gisthub.service.dto.UserDTO;
 import com.blacknebula.gisthub.service.mapper.UserMapper;
 import com.blacknebula.gisthub.web.rest.errors.ExceptionTranslator;

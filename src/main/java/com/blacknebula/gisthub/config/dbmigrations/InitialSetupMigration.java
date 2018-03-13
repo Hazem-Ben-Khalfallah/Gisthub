@@ -1,7 +1,7 @@
 package com.blacknebula.gisthub.config.dbmigrations;
 
 import com.blacknebula.gisthub.domain.Authority;
-import com.blacknebula.gisthub.domain.User;
+import com.blacknebula.gisthub.user.User;
 import com.blacknebula.gisthub.security.AuthoritiesConstants;
 
 import com.github.mongobee.changeset.ChangeLog;
@@ -9,8 +9,6 @@ import com.github.mongobee.changeset.ChangeSet;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Creates the initial database setup
