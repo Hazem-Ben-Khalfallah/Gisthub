@@ -3,6 +3,7 @@ package com.blacknebula.gisthub.service.dto;
 import com.blacknebula.gisthub.config.Constants;
 import com.blacknebula.gisthub.domain.Authority;
 import com.blacknebula.gisthub.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -24,6 +25,9 @@ public class UserDTO {
     @Size(min = 1, max = 50)
     private String login;
 
+    @JsonIgnore
+    private String password;
+
     @Size(max = 50)
     private String firstName;
 
@@ -41,6 +45,7 @@ public class UserDTO {
 
     @Size(min = 2, max = 6)
     private String langKey;
+
 
     private String createdBy;
 
@@ -79,6 +84,7 @@ public class UserDTO {
     private UserDTO(Builder builder) {
         setId(builder.id);
         setLogin(builder.login);
+        setPassword(builder.password);
         setFirstName(builder.firstName);
         setLastName(builder.lastName);
         setEmail(builder.email);
@@ -111,6 +117,14 @@ public class UserDTO {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -231,6 +245,7 @@ public class UserDTO {
     public static final class Builder {
         private String id;
         private String login;
+        private String password;
         private String firstName;
         private String lastName;
         private String email;
@@ -254,6 +269,11 @@ public class UserDTO {
 
         public Builder login(String login) {
             this.login = login;
+            return this;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
             return this;
         }
 

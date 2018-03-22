@@ -7,6 +7,7 @@ import com.blacknebula.gisthub.user.User;
 import com.blacknebula.gisthub.user.UserService;
 import com.blacknebula.gisthub.util.DateUtils;
 import com.blacknebula.gisthub.util.JsonSerializer;
+import com.blacknebula.gisthub.util.RandomUtil;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import com.sun.jersey.api.client.Client;
@@ -23,7 +24,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-@Service public class GithubService {
+@Service
+public class GithubService {
     private final Logger log = LoggerFactory.getLogger(GithubService.class);
     private final ApplicationProperties applicationProperties;
     private final NonceRepository nonceRepository;
@@ -36,16 +38,21 @@ import java.util.UUID;
     }
 
     public String buildOauthUri() {
-        final NonceEntity nonce = nonceRepository.save(NonceEntity.newBuilder().id(generateState()).creationDate(new Date()).build());
+        final NonceEntity nonce = nonceRepository.save(NonceEntity.newBuilder()
+            .id(generateState())
+            .creationDate(new Date())
+            .build());
 
         final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString("https://github.com/login/oauth/authorize")
-            .queryParam("client_id", applicationProperties.getGithub().getClient().getId()).queryParam("redirect_uri", applicationProperties.getGithub().getCallbackUrl())
-            .queryParam("scope", applicationProperties.getGithub().getScope()).queryParam("state", nonce.getId());
+            .queryParam("client_id", applicationProperties.getGithub().getClient().getId())
+            .queryParam("redirect_uri", applicationProperties.getGithub().getCallbackUrl())
+            .queryParam("scope", applicationProperties.getGithub().getScope())
+            .queryParam("state", nonce.getId());
 
         return uriComponentsBuilder.toUriString();
     }
 
-    public User oauthCallback(String code, String nonce) {
+    public UserDTO oauthCallback(String code, String nonce) {
         final Optional<NonceEntity> nonceOptional = nonceRepository.findById(nonce);
 
         if (!nonceOptional.isPresent()) {
@@ -77,9 +84,29 @@ import java.util.UUID;
         final GithubUser githubUser = JsonSerializer.toObject(userResponse.getEntity(String.class), GithubUser.class);
         log.info("user data  {}", githubUser);
 
-        final UserDTO userDTO = UserDTO.newBuilder().login(githubUser.getLogin()).imageUrl(githubUser.getAvatarUrl()).email(githubUser.getEmail()).firstName(githubUser.getName())
-            .authorities(Sets.newHashSet(AuthoritiesConstants.USER)).token(githubAccessToken.getToken()).build();
-        return userService.createUser(userDTO);
+        final Optional<User> optionalUser = userService.getUserWithAuthoritiesByLogin(githubUser.getLogin());
+        final UserDTO userDTO;
+        final String newPassword = RandomUtil.generatePassword();
+        if (!optionalUser.isPresent()) {
+            userDTO = UserDTO.newBuilder()
+                .login(githubUser.getLogin())
+                .password(newPassword)
+                .imageUrl(githubUser.getAvatarUrl())
+                .email(githubUser.getEmail())
+                .firstName(githubUser.getName())
+                .authorities(Sets.newHashSet(AuthoritiesConstants.USER))
+                .token(githubAccessToken.getToken())
+                .build();
+
+            userService.createUser(userDTO);
+        } else {
+            final User user = optionalUser.get();
+            userService.updatePassword(user, newPassword);
+            userDTO = new UserDTO();
+            userDTO.setLogin(user.getLogin());
+            userDTO.setPassword(newPassword);
+        }
+        return userDTO;
     }
 
     private String generateState() {
